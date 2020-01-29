@@ -38,9 +38,9 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a class="nav-link" href="{{ url('/home') }}">Home</a></li>
                     @if(Auth::id() == 1)
-                    <li><a href="{{ url('/post') }}">Add Post</a></li>
+                    <li><a class= "ml-4 nav-link" href="{{ url('/post') }}">Add Post</a></li>
                     @endif
                     </ul>
 
@@ -58,15 +58,15 @@
                             @endif
                         @else
                             <li class="dropdown">
-                                <a id="navbarDropdown" class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"  aria-expanded="false">
+                                <a id="navbarDropdown" class="dropdown-toggle nav-link" href="#" role="button" data-toggle="dropdown"  aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <!-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> -->
                                 <ul class="dropdown-menu" role="menu">
                                     @if(Auth::id() == 1)
-                                    <li><a href="{{ url('/profile') }}">Profile</a></li>
-                                    <li><a href="{{ url('/category') }}">Category</a></li>
+                                    <li><a class="dropdown-item" href="{{ url('/profile') }}">Profile</a></li>
+                                    <li><a class="dropdown-item" href="{{ url('/category') }}">Category</a></li>
                                     @endif
                                     <li>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

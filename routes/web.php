@@ -37,7 +37,7 @@ Route::get('/edit/{id}', 'PostController@edit')->middleware('auth');
 
 Route::post('/editPost/{id}', 'PostController@editPost')->middleware('auth');
 
-Route::get('/deletePost/{id}', 'PostController@deletePost')->middleware('auth');
+Route::get('/delete/{id}', 'PostController@delete')->middleware('auth');
 
 Route::get('/category/{id}', 'PostController@category')->middleware('auth');
 

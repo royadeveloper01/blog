@@ -37,9 +37,9 @@ class PostController extends Controller
 
         if($request->hasFile('post_image')){
             $file = $request->file('post_image');
-$file->move(public_path(). '/posts/',
-$file->getClientOriginalName());
-$url = URL::to("/") . '/posts/' .
+        $file->move(public_path(). '/posts/',
+        $file->getClientOriginalName());
+        $url = URL::to("/") . '/posts/' .
             $file->getClientOriginalName();
 
 
@@ -107,7 +107,7 @@ $url = URL::to("/") . '/posts/' .
 
         }
 
-        public function deletePost($post_id){
+        public function delete($post_id){
             Post::where('id', $post_id)->delete();
             return redirect('/home')->with('response', 'Post Deleted Successfully');
         }

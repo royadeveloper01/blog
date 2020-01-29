@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use\App\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,12 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::group(['prefix' => 'v1'], function(){
+    Route::get('post', 'Api\v1\PostController@index');
+    Route::post('addPost', 'Api\v1\PostController@addPost');
+
+
+
 });

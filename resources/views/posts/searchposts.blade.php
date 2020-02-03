@@ -77,18 +77,18 @@
                             <ul class="nav nav-pills">
                                 <li role="presentation">
                                     <a href='{{ url("/view/{$post->id}") }}'>
-                                        <span>View</span>
+                                        <span >View</span>
                                     </a>
                                 </li>
                                 <li role="presentation">
                                     <a href='{{ url("/edit/{$post->id}") }}'>
-                                        <span>Edit</span>
+                                        <span class="ml-3">Edit</span>
                                     </a>
                                 </li>
 
                                 <li role="presentation">
                                     <a href='{{ url("/delete/{$post->id}") }}'>
-                                        <span>Delete</span>
+                                        <span class="ml-3">Delete</span>
                                     </a>
                                 </li>
                                 

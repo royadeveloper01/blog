@@ -19,8 +19,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => 'v1'], function(){
+    Route::post('login', 'Api\v1\PostController@login');
+    Route::post('register', 'Api\v1\PostController@register');
     Route::get('post', 'Api\v1\PostController@index');
     Route::post('addPost', 'Api\v1\PostController@addPost');
+    Route::post('editPost/{id}', 'Api\v1\PostController@editPost');
+    Route::post('delete/{id}', 'Api\v1\PostController@delete');
 
 
 

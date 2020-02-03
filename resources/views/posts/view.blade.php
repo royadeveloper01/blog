@@ -40,12 +40,12 @@
                                 </li>
                                 <li role="presentation">
                                     <a href='{{ url("/dislike/{$post->id}") }}'>
-                                        <span class="fas fa-trash">Dislike({{ $dislikeCtr }}) </span>
+                                        <span class="fas fa-trash ml-2">Dislike({{ $dislikeCtr }}) </span>
                                     </a>
                                 </li>
                                 <li role="presentation">
                                     <a href='{{ url("/comment/{$post->id}") }}'>
-                                        <span>Comment</span>
+                                        <span class="ml-2">Comment</span>
                                     </a>
                                 </li>
                             </ul>

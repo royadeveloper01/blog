@@ -18,14 +18,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'v1'], function(){
-    Route::post('login', 'Api\v1\PostController@login');
-    Route::post('register', 'Api\v1\PostController@register');
+Route::group(['prefix'=>'v1'], function(){
+    Route::post('login', 'Api\v1\UserController@login');
+    Route::post('register', 'Api\v1\UserController@register');
     Route::get('post', 'Api\v1\PostController@index');
+    Route::get('post/{id}', 'Api\v1\PostController@getPost');
     Route::post('addPost', 'Api\v1\PostController@addPost');
     Route::post('editPost/{id}', 'Api\v1\PostController@editPost');
     Route::post('delete/{id}', 'Api\v1\PostController@delete');
-
-
-
 });

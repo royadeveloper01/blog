@@ -8,11 +8,13 @@ use\App\Post;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\URL;
 use\Auth;
+use App\User;
 
 
 class PostController extends Controller
 {
-    
+
+    // To view all the posts
     public function index(){
         $posts = Post::all();
         return response()->json([
@@ -20,7 +22,19 @@ class PostController extends Controller
             'data'=>$posts
         ]);
     }
+    // To view a single post
+    public function getPost($id){
+        if (Post::where('id', $id)->exists()) {
+            $posts = Post::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($posts, 200);
+          } else {
+            return response()->json([
+              "message" => "post not found"
+            ], 404);
+          }
+    }
 
+    // To add a new post
     public function addPost(Request $request){
         $this->validate($request, [
             'post_title' => 'required',
@@ -53,7 +67,37 @@ class PostController extends Controller
         ]);
     }
 
+    // To edit a single post
+    // public function editPost(Request $request, $id){
+    //     if (Post::where('id', $id)->exists()) {
+    //         $posts = Post::find($id);
+    //         $posts->post_title = is_null($request->post_title) ? $posts->post_title : $request->post_title;
+    //         $posts->post_body = is_null($request->post_body) ? $posts->post_body : $request->post_body;
+    //         $posts->category_id = is_null($request->category_id) ? $posts->category_id : $request->category_id;
+    //         if($request->hasFile('post_image')){
+    //             $file = $request->file('post_image');
+    // $file->move(public_path(). '/posts/',
+    // $file->getClientOriginalName());
+    // $url = URL::to("/") . '/posts/' .
+    //             $file->getClientOriginalName();
+    
+    //         }
+    //         $posts->post_image = $url;
+    //         // $posts->post_image = is_null($request->post_image) ? $posts->post_image : $request->post_image;
+    //         // $posts->save();
+    //         return response()->json([
+    //             'status'=>200,
+    //             'message'=>'Post Updated Successfully!'
+    //         ]);
+    //     }else {
+    //         return response()->json([
+    //             "message" => "Post not found"
+    //         ], 404);
+    //     }
+    // }
 
+
+    // To delete a single post
     public function delete($post_id){
         Post::where('id', $post_id)->delete();
         return response()->json([
@@ -62,54 +106,6 @@ class PostController extends Controller
         ]);
     }
 
-    public $successStatus = 200;
-    // /** 
-    //      * login api 
-    //      * 
-    //      * @return \Illuminate\Http\Response 
-    //      */ 
-        public function login(){ 
-            if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){ 
-                $user = Auth::user(); 
-                $success['token'] =  $user->createToken('MyApp')-> accessToken; 
-                return response()->json(['success' => $success], $this-> successStatus); 
-            } 
-            else{ 
-                return response()->json(['error'=>'Unauthorised'], 401); 
-            } 
-        }
-
-        // * Register api 
-        // * 
-        // * @return \Illuminate\Http\Response 
-        // */ 
-       public function register(Request $request) 
-       { 
-           $validator = Validator::make($request->all(), [ 
-               'name' => 'required', 
-               'email' => 'required|email', 
-               'password' => 'required', 
-               'c_password' => 'required|same:password', 
-           ]);
-   if ($validator->fails()) { 
-               return response()->json(['error'=>$validator->errors()], 401);            
-           }
-   $input = $request->all(); 
-           $input['password'] = bcrypt($input['password']); 
-           $user = User::create($input); 
-           $success['token'] =  $user->createToken('MyApp')-> accessToken; 
-           $success['name'] =  $user->name;
-   return response()->json(['success'=>$success], $this-> successStatus); 
-       }
-
-    // * details api 
-    //  * 
-    //  * @return \Illuminate\Http\Response 
-    //  */ 
-    public function details() 
-    { 
-        $user = Auth::user(); 
-        return response()->json(['success' => $user], $this-> successStatus); 
-    } 
+    
     
 }

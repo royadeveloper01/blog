@@ -11,6 +11,16 @@ use App\User;
 class UserController extends Controller
 {
     public $successStatus = 200;
+
+
+    // // To viewv all the users
+    public function userslist(){
+        $userslist = User::all();
+        return response()->json([
+            'status'=>200,
+            'data'=>$userslist
+        ]);
+    }
     // /** 
     //      * login api 
     //      * 

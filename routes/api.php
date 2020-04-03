@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use\App\Post;
 use\App\User;
+use\App\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ use\App\User;
 
     Route::post('login', 'Api\v1\UserController@login');
     Route::post('register', 'Api\v1\UserController@register');
-Route::group(['middleware' => 'auth:api','prefix'=>'v1'], function(){
+Route::group(['prefix'=>'v1'], function(){
     // Routes for Posts
     // Route::get('users', 'Api\v1\UserController@');
     Route::get('post', 'Api\v1\PostController@index');

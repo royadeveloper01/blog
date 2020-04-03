@@ -26,7 +26,7 @@ class PostController extends Controller
             'post_title' => 'required',
             'post_body' => 'required',
             'category_id' => 'required',
-            'post_image' => 'required',
+            'post_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         
         $posts = new Post;
@@ -77,7 +77,7 @@ class PostController extends Controller
                 'post_title' => 'required',
                 'post_body' => 'required',
                 'category_id' => 'required',
-                'post_image' => 'required',
+                'post_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
             $posts = new Post;
             $posts->post_title = $request->post_title;

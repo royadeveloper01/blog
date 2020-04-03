@@ -99,6 +99,7 @@
                             </ul>
                             <cite style="float:left;">Posted on: {{date('M j, Y H:i',
                             strtotime($post->update_at))}}</cite>
+                            <cite style="float:left;">Posted by: {{$post->name))}}</cite>
                             <hr/>
                         @endforeach
                     @else

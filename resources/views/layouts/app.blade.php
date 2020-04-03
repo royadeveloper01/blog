@@ -64,8 +64,9 @@
 
                                 <!-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> -->
                                 <ul class="dropdown-menu" role="menu">
-                                    @if(Auth::id() == 1)
+                                    
                                     <li><a class="dropdown-item" href="{{ url('/profile') }}">Profile</a></li>
+                                    @if(Auth::id() == 1)
                                     <li><a class="dropdown-item" href="{{ url('/category') }}">Category</a></li>
                                     @endif
                                     <li>

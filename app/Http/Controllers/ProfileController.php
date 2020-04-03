@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\URL;
 use App\Profile;
-use\Auth;
+use Auth;
 
 class ProfileController extends Controller
 {
@@ -17,7 +17,7 @@ class ProfileController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'designation' => 'required',
-            'profile_pic' => 'required',
+            'profile_pic' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $profiles = new Profile;
         $profiles->name = $request->name;
